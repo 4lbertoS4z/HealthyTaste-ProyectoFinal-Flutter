@@ -55,7 +55,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("First Dishes"),
+        title: const Text("First Dishess"),
       ),
       body: SafeArea(
         child: RefreshIndicator(
