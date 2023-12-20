@@ -21,4 +21,19 @@ class DishDataImpl extends DishRepository {
   Future<List<DishNetworkResponse>> getSecondsList() {
     return _remoteImpl.getSecondsList();
   }
+
+  @override
+  Future<DishNetworkResponse> getFirstDishById(int id) {
+    return _remoteImpl.getFirstDishById(id);
+  }
+
+  @override
+  Future<DishNetworkResponse> getDessertDishById(int id) {
+    return _remoteImpl.getDessertDishById(id);
+  }
+
+  @override
+  Future<DishNetworkResponse> getSecondDishById(int id) {
+    return _remoteImpl.getSecondDishById(id);
+  }
 }

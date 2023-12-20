@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
+import 'package:healthy_taste/presentation/navigation/navigation_routes.dart';
 
 class FirstDishRow extends StatelessWidget {
   const FirstDishRow({
@@ -13,7 +15,9 @@ class FirstDishRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Acción al tocar
+        context.go(Uri(
+            path: NavigationRoutes.FIRST_DETAIL_PAGE,
+            queryParameters: {"id": firstDish.id.toString()}).toString());
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

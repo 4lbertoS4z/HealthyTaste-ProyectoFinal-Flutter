@@ -47,4 +47,22 @@ class DishRemoteImpl {
       throw RemoteErrorMapper.getException(e);
     }
   }
+
+  Future<DishNetworkResponse> getFirstDishById(int id) async {
+    final response = await _networkClient.dio
+        .get("${NetworkConstants.FIRST_DETAIL_PATH}$id.json");
+    return DishNetworkResponse.fromMap(response.data);
+  }
+
+  Future<DishNetworkResponse> getSecondDishById(int id) async {
+    final response = await _networkClient.dio
+        .get("${NetworkConstants.SECOND_DETAIL_PATH}$id.json");
+    return DishNetworkResponse.fromMap(response.data);
+  }
+
+  Future<DishNetworkResponse> getDessertDishById(int id) async {
+    final response = await _networkClient.dio
+        .get("${NetworkConstants.DESSERT_DETAIL_PATH}$id.json");
+    return DishNetworkResponse.fromMap(response.data);
+  }
 }

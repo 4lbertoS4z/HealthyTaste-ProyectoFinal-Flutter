@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(seconds: 3));
 
     if (mounted) {
-      context.go(NavigationRoutes.HOME_CATEGORIES_ROUTE);
+      context.go(NavigationRoutes.FIRST_DISH_ROUTE);
     }
   }
 }

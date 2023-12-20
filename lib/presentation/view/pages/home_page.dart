@@ -1,58 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_taste/presentation/view/pages/dish/desserts/dessert_dishes_list.dart';
-import 'package:healthy_taste/presentation/view/pages/dish/firsts/first_dishes_list.dart';
-import 'package:healthy_taste/presentation/view/pages/dish/seconds/second_dishes_list.dart';
-import 'package:healthy_taste/presentation/view/pages/kcal_webview.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
+  const HomePage({super.key, required this.navigationShell});
+  final StatefulNavigationShell navigationShell;
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    // Inicializa el TabController con 4 tabs
-    _tabController = TabController(vsync: this, length: 4);
-  }
-
-  @override
-  void dispose() {
-    // Asegúrate de disponer el TabController para evitar fugas de memoria
-    _tabController.dispose();
-    super.dispose();
-  }
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Healthy Taste'),
-        bottom: TabBar(
-          controller: _tabController,
-          // Define las pestañas aquí
-          tabs: const [
-            Tab(text: 'Entrantes'),
-            Tab(text: 'Segundos'),
-            Tab(text: 'Postres'),
-            Tab(text: 'Kcal'),
-          ],
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        // Contenido para cada tab
-        children: const [
-          FirstDishesList(),
-          SecondDishesList(),
-          DessertDishesList(),
-          KcalWebView(),
+      body: widget.navigationShell,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: widget.navigationShell.currentIndex,
+        onDestinationSelected: (value) {
+          widget.navigationShell.goBranch(value,
+              initialLocation: value == widget.navigationShell.currentIndex);
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: "First",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.fastfood_outlined),
+            selectedIcon: Icon(Icons.fastfood),
+            label: "Seconds",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.cake_outlined),
+            selectedIcon: Icon(Icons.cake),
+            label: "Desserts",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.calculate_outlined),
+            selectedIcon: Icon(Icons.calculate),
+            label: "Kcal",
+          ),
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:healthy_taste/di/app_module.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/firsts/first_dish_row.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/first_dish_view_model.dart';
+import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
 
 class FirstDishesList extends StatefulWidget {
@@ -21,7 +22,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
   void initState() {
     super.initState();
     _viewModel.fetchtFirstDishes();
-    _viewModel.getFirstDishState.stream.listen((state) {
+    _viewModel.getFirstDishesState.stream.listen((state) {
       switch (state.status) {
         case Status.LOADING:
           LoadingView.show(context);
@@ -36,7 +37,9 @@ class _FirstDishesListState extends State<FirstDishesList> {
           break;
         case Status.ERROR:
           LoadingView.hide();
-          _showError(state.error!);
+          ErrorView.show(context, state.exception!.toString(), () {
+            _viewModel.fetchtFirstDishes();
+          });
           break;
       }
     });
@@ -46,11 +49,6 @@ class _FirstDishesListState extends State<FirstDishesList> {
   void dispose() {
     _viewModel.dispose();
     super.dispose();
-  }
-
-  _showError(Error error) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Error: ${error.toString()}")));
   }
 
   @override

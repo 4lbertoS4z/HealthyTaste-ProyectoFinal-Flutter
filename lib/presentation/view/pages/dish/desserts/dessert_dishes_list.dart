@@ -4,6 +4,7 @@ import 'package:healthy_taste/di/app_module.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/desserts/dessert_dish_row.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/dessert_dish_view_model.dart';
+import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
 
 class DessertDishesList extends StatefulWidget {
@@ -36,7 +37,9 @@ class _DessertDishesListState extends State<DessertDishesList> {
           break;
         case Status.ERROR:
           LoadingView.hide();
-          _showError(state.error!);
+          ErrorView.show(context, state.exception!.toString(), () {
+            _viewModel.fetchtDessertDishes();
+          });
           break;
       }
     });
@@ -46,11 +49,6 @@ class _DessertDishesListState extends State<DessertDishesList> {
   void dispose() {
     _viewModel.dispose();
     super.dispose();
-  }
-
-  _showError(Error error) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Error: ${error.toString()}")));
   }
 
   @override

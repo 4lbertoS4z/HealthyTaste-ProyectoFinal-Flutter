@@ -9,6 +9,8 @@ class SecondDishViewModel extends BaseViewModel {
   final DishRepository _secondDishrepository;
   final StreamController<ResourceState<List<DishNetworkResponse>>>
       getSecondDishState = StreamController();
+  final StreamController<ResourceState<DishNetworkResponse>>
+      getSecondDishDetailState = StreamController();
   SecondDishViewModel({required DishRepository secondDishRepository})
       : _secondDishrepository = secondDishRepository;
 
@@ -20,8 +22,19 @@ class SecondDishViewModel extends BaseViewModel {
         .catchError((e) => getSecondDishState.add(ResourceState.error(e)));
   }
 
+  fetchSecondDish(int id) {
+    getSecondDishDetailState.add(ResourceState.loading());
+    _secondDishrepository
+        .getSecondDishById(id)
+        .then((value) =>
+            getSecondDishDetailState.add(ResourceState.success(value)))
+        .catchError(
+            (e) => getSecondDishDetailState.add(ResourceState.error(e)));
+  }
+
   @override
   void dispose() {
     getSecondDishState.close();
+    getSecondDishDetailState.close();
   }
 }

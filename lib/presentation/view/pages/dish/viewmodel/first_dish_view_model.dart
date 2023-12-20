@@ -6,22 +6,39 @@ import 'package:healthy_taste/presentation/base/base_view_model.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 
 class FirstDishViewModel extends BaseViewModel {
-  final DishRepository _firstDishrepository;
+  final DishRepository _firstDishRepository;
+
+  // Para manejar una lista de platos
   final StreamController<ResourceState<List<DishNetworkResponse>>>
-      getFirstDishState = StreamController();
+      getFirstDishesState = StreamController();
+
+  // Para manejar un único plato
+  final StreamController<ResourceState<DishNetworkResponse>>
+      getFirstDishDetailState = StreamController();
+
   FirstDishViewModel({required DishRepository firstDishRepository})
-      : _firstDishrepository = firstDishRepository;
+      : _firstDishRepository = firstDishRepository;
 
   fetchtFirstDishes() {
-    getFirstDishState.add(ResourceState.loading());
-    _firstDishrepository
+    getFirstDishesState.add(ResourceState.loading());
+    _firstDishRepository
         .getFirstList()
-        .then((value) => getFirstDishState.add(ResourceState.success(value)))
-        .catchError((e) => getFirstDishState.add(ResourceState.error(e)));
+        .then((value) => getFirstDishesState.add(ResourceState.success(value)))
+        .catchError((e) => getFirstDishesState.add(ResourceState.error(e)));
+  }
+
+  fetchFirstDish(int id) {
+    getFirstDishDetailState.add(ResourceState.loading());
+    _firstDishRepository
+        .getFirstDishById(id)
+        .then((value) =>
+            getFirstDishDetailState.add(ResourceState.success(value)))
+        .catchError((e) => getFirstDishDetailState.add(ResourceState.error(e)));
   }
 
   @override
   void dispose() {
-    getFirstDishState.close();
+    getFirstDishesState.close();
+    getFirstDishDetailState.close();
   }
 }
