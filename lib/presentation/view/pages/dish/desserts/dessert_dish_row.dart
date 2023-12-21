@@ -19,15 +19,39 @@ class DessertDishRow extends StatelessWidget {
             path: NavigationRoutes.DESSERT_DETAIL_PAGE,
             queryParameters: {"id": dessertDish.id.toString()}).toString());
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.network(dessertDish.image, width: 80, height: 80),
-          const SizedBox(width: 16),
-          Flexible(
-            child: Text(dessertDish.name),
+      child: Card(
+        color: const Color.fromARGB(255, 207, 189, 156),
+        elevation: 4.0,
+        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ClipRRect(
+                borderRadius:
+                    BorderRadius.circular(8.0), // Añade esquinas redondeadas
+                child: Image.network(
+                  dessertDish.image,
+                  width: 100, // Ancho fijo
+                  height: 100, // Altura fija
+                  fit: BoxFit
+                      .cover, // Esto asegura que la imagen llene el espacio asignado
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  dessertDish.name,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

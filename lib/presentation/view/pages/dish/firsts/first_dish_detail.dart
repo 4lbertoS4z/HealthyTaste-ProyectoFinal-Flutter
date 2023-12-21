@@ -5,6 +5,7 @@ import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/first_dish_view_model.dart';
 import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
+import 'package:healthy_taste/presentation/widgets/youtube/video_player_screen.dart';
 
 class FirstDishDetail extends StatefulWidget {
   final int id;
@@ -60,6 +61,7 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
         title: Text(_dishDetails?.name ?? 'Loading...'),
       ),
       body: _buildDishDetails(),
+      backgroundColor: const Color(0xFFF5DEB3),
     );
   }
 
@@ -69,10 +71,73 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
     } else {
       return SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.network(_dishDetails!.image),
-            Text(_dishDetails!.details.elaboration),
-            // Aquí puedes agregar más widgets para mostrar otros detalles
+            Image.network(
+              _dishDetails!.image,
+              width: double.infinity,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Ingredients:',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                _dishDetails!.details.ingredients.join('\n'),
+                style: const TextStyle(fontSize: 18),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Elaboration:',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                _dishDetails!.details.elaboration,
+                style: const TextStyle(fontSize: 18),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            if (_dishDetails!.details.imgAllergies.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Allergies:",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Image.network(
+                      _dishDetails!.details.imgAllergies,
+                      width: double.infinity,
+                      height: 50,
+                    )
+                  ],
+                ),
+              ),
+            const Text(
+              "Video Detail:",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            if (_dishDetails!.details.urlVideo.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child:
+                    VideoPlayerScreen(videoId: _dishDetails!.details.urlVideo),
+              ),
           ],
         ),
       );

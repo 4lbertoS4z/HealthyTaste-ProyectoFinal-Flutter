@@ -19,15 +19,39 @@ class FirstDishRow extends StatelessWidget {
             path: NavigationRoutes.FIRST_DETAIL_PAGE,
             queryParameters: {"id": firstDish.id.toString()}).toString());
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Image.network(firstDish.image, width: 80, height: 80),
-          const SizedBox(width: 16),
-          Flexible(
-            child: Text(firstDish.name),
+      child: Card(
+        color: const Color.fromARGB(255, 207, 189, 156),
+        elevation: 4.0,
+        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius:
+                    BorderRadius.circular(8.0), // Añade esquinas redondeadas
+                child: Image.network(
+                  firstDish.image,
+                  width: 100, // Ancho fijo
+                  height: 100, // Altura fija
+                  fit: BoxFit
+                      .cover, // Esto asegura que la imagen llene el espacio asignado
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  firstDish.name,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
