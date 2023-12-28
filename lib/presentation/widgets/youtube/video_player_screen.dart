@@ -19,7 +19,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _controller = YoutubePlayerController(
       initialVideoId: widget.videoId,
       flags: const YoutubePlayerFlags(
-        autoPlay: true,
+        autoPlay: false,
         mute: false,
       ),
     );
@@ -31,6 +31,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       controller: _controller,
       showVideoProgressIndicator: true,
       progressIndicatorColor: Colors.blueAccent,
+      bottomActions: [
+        CurrentPosition(),
+        const SizedBox(width: 10.0),
+        ProgressBar(isExpanded: true),
+        const SizedBox(width: 10.0),
+        RemainingDuration(),
+      ],
     );
   }
 

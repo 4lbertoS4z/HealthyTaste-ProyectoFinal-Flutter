@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
@@ -73,8 +74,8 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.network(
-              _dishDetails!.image,
+            CachedNetworkImage(
+              imageUrl: _dishDetails!.image,
               width: double.infinity,
               height: 200,
               fit: BoxFit.cover,
@@ -120,8 +121,8 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Image.network(
-                      _dishDetails!.details.imgAllergies,
+                    CachedNetworkImage(
+                      imageUrl: _dishDetails!.details.imgAllergies,
                       width: double.infinity,
                       height: 50,
                     )

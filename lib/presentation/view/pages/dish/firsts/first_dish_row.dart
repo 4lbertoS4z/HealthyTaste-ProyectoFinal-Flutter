@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
@@ -31,12 +32,14 @@ class FirstDishRow extends StatelessWidget {
               ClipRRect(
                 borderRadius:
                     BorderRadius.circular(8.0), // Añade esquinas redondeadas
-                child: Image.network(
-                  firstDish.image,
+                child: CachedNetworkImage(
+                  imageUrl: firstDish.image,
                   width: 100, // Ancho fijo
                   height: 100, // Altura fija
-                  fit: BoxFit
-                      .cover, // Esto asegura que la imagen llene el espacio asignado
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
               const SizedBox(width: 16),
