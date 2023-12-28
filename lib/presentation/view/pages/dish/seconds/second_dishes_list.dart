@@ -8,7 +8,7 @@ import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
 
 class SecondDishesList extends StatefulWidget {
-  const SecondDishesList({super.key});
+  const SecondDishesList({Key? key}) : super(key: key);
 
   @override
   State<SecondDishesList> createState() => _SecondDishesListState();
@@ -17,6 +17,8 @@ class SecondDishesList extends StatefulWidget {
 class _SecondDishesListState extends State<SecondDishesList> {
   final SecondDishViewModel _viewModel = inject<SecondDishViewModel>();
   List<DishNetworkResponse> secondDishes = [];
+  TextEditingController searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class _SecondDishesListState extends State<SecondDishesList> {
           if (state.data != null) {
             setState(() {
               secondDishes = state.data!;
+              filterDishes(searchController.text);
             });
             LoadingView.hide();
           }
@@ -51,6 +54,18 @@ class _SecondDishesListState extends State<SecondDishesList> {
     super.dispose();
   }
 
+  List<DishNetworkResponse> filteredDishes = [];
+
+  void filterDishes(String query) {
+    final keywords = query.toLowerCase().split(' ');
+    setState(() {
+      filteredDishes = secondDishes.where((dish) {
+        final dishNameLower = dish.name.toLowerCase();
+        return keywords.any((keyword) => dishNameLower.contains(keyword));
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,19 +73,50 @@ class _SecondDishesListState extends State<SecondDishesList> {
         title: const Text("Second Dishes"),
       ),
       body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            _viewModel.fetchtSecondDishes();
-          },
-          child: ListView.builder(
-            itemCount: secondDishes.length,
-            itemBuilder: (context, index) {
-              return SecondDishRow(
-                secondDish: secondDishes[index],
-              );
-            },
-          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: searchController,
+                onChanged: (value) {
+                  filterDishes(value);
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Search',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  _viewModel.fetchtSecondDishes();
+                },
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: filteredDishes.length,
+                  itemBuilder: (context, index) {
+                    return SecondDishRow(
+                      secondDish: filteredDishes[index],
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _scrollController.animateTo(
+            0.0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        },
+        mini: true,
+        child: const Icon(Icons.arrow_upward),
       ),
     );
   }

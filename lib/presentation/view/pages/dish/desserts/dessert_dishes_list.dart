@@ -17,6 +17,9 @@ class DessertDishesList extends StatefulWidget {
 class _DessertDishesListState extends State<DessertDishesList> {
   final DessertDishViewModel _viewModel = inject<DessertDishViewModel>();
   List<DishNetworkResponse> dessertDishes = [];
+  List<DishNetworkResponse> filteredDishes = [];
+  TextEditingController searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -31,6 +34,7 @@ class _DessertDishesListState extends State<DessertDishesList> {
           if (state.data != null) {
             setState(() {
               dessertDishes = state.data!;
+              filteredDishes = dessertDishes;
             });
             LoadingView.hide();
           }
@@ -51,6 +55,16 @@ class _DessertDishesListState extends State<DessertDishesList> {
     super.dispose();
   }
 
+// Método para filtrar las recetas en función de la entrada de texto
+  void filterDishes(String query) {
+    setState(() {
+      filteredDishes = dessertDishes
+          .where(
+              (dish) => dish.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,19 +72,50 @@ class _DessertDishesListState extends State<DessertDishesList> {
         title: const Text("Dessert Dishes"),
       ),
       body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            _viewModel.fetchtDessertDishes();
-          },
-          child: ListView.builder(
-            itemCount: dessertDishes.length,
-            itemBuilder: (context, index) {
-              return DessertDishRow(
-                dessertDish: dessertDishes[index],
-              );
-            },
-          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: searchController,
+                onChanged: (value) {
+                  filterDishes(value);
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Search',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  _viewModel.fetchtDessertDishes();
+                },
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: filteredDishes.length,
+                  itemBuilder: (context, index) {
+                    return DessertDishRow(
+                      dessertDish: filteredDishes[index],
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _scrollController.animateTo(
+            0.0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        },
+        mini: true,
+        child: const Icon(Icons.arrow_upward),
       ),
     );
   }
