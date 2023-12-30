@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthy_taste/data/dish/local/first_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
@@ -20,9 +21,18 @@ class _FirstDishesListState extends State<FirstDishesList> {
   List<DishNetworkResponse> filteredDishes = [];
   TextEditingController searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  late FirstFavoritesService _favoritesService;
+
   @override
   void initState() {
     super.initState();
+    _favoritesService = FirstFavoritesService();
+    _favoritesService.loadFavorites().then((_) {
+      setState(() {
+        _sortDishes();
+      });
+    });
+
     _viewModel.fetchtFirstDishes();
     _viewModel.getFirstDishesState.stream.listen((state) {
       switch (state.status) {
@@ -34,6 +44,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
             setState(() {
               firstDishes = state.data!;
               filteredDishes = firstDishes;
+              _sortDishes();
             });
             LoadingView.hide();
           }
@@ -54,13 +65,22 @@ class _FirstDishesListState extends State<FirstDishesList> {
     super.dispose();
   }
 
-// Método para filtrar las recetas en función de la entrada de texto
+  void _sortDishes() {
+    filteredDishes.sort((a, b) {
+      final aIsFavorite = _favoritesService.isFavorite(a.id);
+      final bIsFavorite = _favoritesService.isFavorite(b.id);
+      if (aIsFavorite == bIsFavorite) return 0;
+      return aIsFavorite ? -1 : 1;
+    });
+  }
+
   void filterDishes(String query) {
     setState(() {
       filteredDishes = firstDishes
           .where(
               (dish) => dish.name.toLowerCase().contains(query.toLowerCase()))
           .toList();
+      _sortDishes();
     });
   }
 
@@ -68,7 +88,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("First Dishess"),
+        title: const Text("First Dishes"),
       ),
       body: SafeArea(
         child: Column(
@@ -77,9 +97,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: searchController,
-                onChanged: (value) {
-                  filterDishes(value);
-                },
+                onChanged: filterDishes,
                 decoration: const InputDecoration(
                   labelText: 'Search',
                   border: OutlineInputBorder(),
@@ -97,6 +115,12 @@ class _FirstDishesListState extends State<FirstDishesList> {
                   itemBuilder: (context, index) {
                     return FirstDishRow(
                       firstDish: filteredDishes[index],
+                      favoritesService: _favoritesService,
+                      onFavoriteChanged: () {
+                        setState(() {
+                          _sortDishes();
+                        });
+                      },
                     );
                   },
                 ),

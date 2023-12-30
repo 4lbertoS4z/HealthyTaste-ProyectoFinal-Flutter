@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthy_taste/data/dish/local/second_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/presentation/navigation/navigation_routes.dart';
 
@@ -8,12 +9,16 @@ class SecondDishRow extends StatelessWidget {
   const SecondDishRow({
     super.key,
     required this.secondDish,
+    required this.favoritesService, // Añade este parámetro
+    required this.onFavoriteChanged,
   });
 
   final DishNetworkResponse secondDish;
-
+  final SecondFavoritesService favoritesService; // Añade esta línea
+  final VoidCallback onFavoriteChanged;
   @override
   Widget build(BuildContext context) {
+    bool isFavorite = favoritesService.isFavorite(secondDish.id);
     return GestureDetector(
       onTap: () {
         context.go(Uri(
@@ -51,6 +56,19 @@ class SecondDishRow extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              IconButton(
+                // Añade el botón de favoritos
+                icon: Icon(
+                  isFavorite ? Icons.star : Icons.star_border,
+                  color: isFavorite ? Colors.blue : Colors.blue,
+                ),
+                onPressed: () {
+                  favoritesService.toggleFavorite(secondDish.id);
+                  favoritesService
+                      .saveFavorites(); // Guarda el cambio de estado
+                  onFavoriteChanged(); // Llama al callback para actualizar la lista
+                },
               ),
             ],
           ),

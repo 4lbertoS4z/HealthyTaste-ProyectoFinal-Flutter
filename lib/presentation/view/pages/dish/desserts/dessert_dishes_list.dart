@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthy_taste/data/dish/local/dessert_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
@@ -20,10 +21,17 @@ class _DessertDishesListState extends State<DessertDishesList> {
   List<DishNetworkResponse> filteredDishes = [];
   TextEditingController searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  late DessertFavoritesService _favoritesService;
 
   @override
   void initState() {
     super.initState();
+    _favoritesService = DessertFavoritesService();
+    _favoritesService.loadFavorites().then((_) {
+      setState(() {
+        _sortDishes();
+      });
+    });
     _viewModel.fetchtDessertDishes();
     _viewModel.getDessertDishState.stream.listen((state) {
       switch (state.status) {
@@ -35,6 +43,7 @@ class _DessertDishesListState extends State<DessertDishesList> {
             setState(() {
               dessertDishes = state.data!;
               filteredDishes = dessertDishes;
+              _sortDishes();
             });
             LoadingView.hide();
           }
@@ -55,13 +64,22 @@ class _DessertDishesListState extends State<DessertDishesList> {
     super.dispose();
   }
 
-// Método para filtrar las recetas en función de la entrada de texto
+  void _sortDishes() {
+    filteredDishes.sort((a, b) {
+      final aIsFavorite = _favoritesService.isFavorite(a.id);
+      final bIsFavorite = _favoritesService.isFavorite(b.id);
+      if (aIsFavorite == bIsFavorite) return 0;
+      return aIsFavorite ? -1 : 1;
+    });
+  }
+
   void filterDishes(String query) {
     setState(() {
       filteredDishes = dessertDishes
           .where(
               (dish) => dish.name.toLowerCase().contains(query.toLowerCase()))
           .toList();
+      _sortDishes();
     });
   }
 
@@ -98,6 +116,12 @@ class _DessertDishesListState extends State<DessertDishesList> {
                   itemBuilder: (context, index) {
                     return DessertDishRow(
                       dessertDish: filteredDishes[index],
+                      favoritesService: _favoritesService,
+                      onFavoriteChanged: () {
+                        setState(() {
+                          _sortDishes();
+                        });
+                      },
                     );
                   },
                 ),

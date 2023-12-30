@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthy_taste/data/dish/local/second_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
@@ -17,12 +18,20 @@ class SecondDishesList extends StatefulWidget {
 class _SecondDishesListState extends State<SecondDishesList> {
   final SecondDishViewModel _viewModel = inject<SecondDishViewModel>();
   List<DishNetworkResponse> secondDishes = [];
+  List<DishNetworkResponse> filteredDishes = [];
   TextEditingController searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  late SecondFavoritesService _favoritesService;
 
   @override
   void initState() {
     super.initState();
+    _favoritesService = SecondFavoritesService();
+    _favoritesService.loadFavorites().then((_) {
+      setState(() {
+        _sortDishes();
+      });
+    });
     _viewModel.fetchtSecondDishes();
     _viewModel.getSecondDishState.stream.listen((state) {
       switch (state.status) {
@@ -33,7 +42,8 @@ class _SecondDishesListState extends State<SecondDishesList> {
           if (state.data != null) {
             setState(() {
               secondDishes = state.data!;
-              filterDishes(searchController.text);
+              filteredDishes = secondDishes;
+              _sortDishes();
             });
             LoadingView.hide();
           }
@@ -54,15 +64,22 @@ class _SecondDishesListState extends State<SecondDishesList> {
     super.dispose();
   }
 
-  List<DishNetworkResponse> filteredDishes = [];
+  void _sortDishes() {
+    filteredDishes.sort((a, b) {
+      final aIsFavorite = _favoritesService.isFavorite(a.id);
+      final bIsFavorite = _favoritesService.isFavorite(b.id);
+      if (aIsFavorite == bIsFavorite) return 0;
+      return aIsFavorite ? -1 : 1;
+    });
+  }
 
   void filterDishes(String query) {
-    final keywords = query.toLowerCase().split(' ');
     setState(() {
-      filteredDishes = secondDishes.where((dish) {
-        final dishNameLower = dish.name.toLowerCase();
-        return keywords.any((keyword) => dishNameLower.contains(keyword));
-      }).toList();
+      filteredDishes = secondDishes
+          .where(
+              (dish) => dish.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      _sortDishes();
     });
   }
 
@@ -99,6 +116,12 @@ class _SecondDishesListState extends State<SecondDishesList> {
                   itemBuilder: (context, index) {
                     return SecondDishRow(
                       secondDish: filteredDishes[index],
+                      favoritesService: _favoritesService,
+                      onFavoriteChanged: () {
+                        setState(() {
+                          _sortDishes();
+                        });
+                      },
                     );
                   },
                 ),
