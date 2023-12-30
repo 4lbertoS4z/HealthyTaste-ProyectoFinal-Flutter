@@ -113,6 +113,7 @@ class _SecondDishesListState extends State<SecondDishesList> {
                 child: ListView.builder(
                   controller: _scrollController,
                   itemCount: filteredDishes.length,
+                  padding: const EdgeInsets.only(bottom: 80.0),
                   itemBuilder: (context, index) {
                     return SecondDishRow(
                       secondDish: filteredDishes[index],

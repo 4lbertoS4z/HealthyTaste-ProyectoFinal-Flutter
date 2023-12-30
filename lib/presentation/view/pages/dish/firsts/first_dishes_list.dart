@@ -112,6 +112,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
                 child: ListView.builder(
                   controller: _scrollController,
                   itemCount: filteredDishes.length,
+                  padding: const EdgeInsets.only(bottom: 80.0),
                   itemBuilder: (context, index) {
                     return FirstDishRow(
                       firstDish: filteredDishes[index],
