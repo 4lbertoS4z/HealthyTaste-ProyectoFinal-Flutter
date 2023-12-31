@@ -1,0 +1,19 @@
+{
+    "loading": "Chargement...",
+    "ingredients": "Ingrédients:",
+    "elaboration": "Élaboration:",
+    "allergies": "Allergies:",
+    "videoDetail": "Détail Vidéo:",
+    "dessertDishes": "Plats de Dessert",
+    "search": "Rechercher",
+    "firstDishes": "Plats Principaux",
+    "secondDishes": "Second Plats",
+    "kcalWebViewTitle": "Kcal WebView",
+    "home": "Accueil",
+    "first": "Premier",
+    "seconds": "Secondes",
+    "desserts": "Desserts",
+    "kcal": "Kcal",
+    "errorOccurred": "Une erreur s'est produite",
+    "retry": "Réessayer"
+}

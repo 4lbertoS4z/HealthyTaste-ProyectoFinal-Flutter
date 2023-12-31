@@ -1,0 +1,19 @@
+{
+    "loading": "読み込み中...",
+    "ingredients": "成分:",
+    "elaboration": "説明:",
+    "allergies": "アレルギー:",
+    "videoDetail": "ビデオの詳細:",
+    "dessertDishes": "デザート料理",
+    "search": "検索",
+    "firstDishes": "最初の料理",
+    "secondDishes": "セカンド料理",
+    "kcalWebViewTitle": "Kcal ウェブビュー",
+    "home": "ホーム",
+    "first": "最初",
+    "seconds": "秒",
+    "desserts": "デザート",
+    "kcal": "カロリー",
+    "errorOccurred": "エラーが発生しました",
+    "retry": "再試行"
+}

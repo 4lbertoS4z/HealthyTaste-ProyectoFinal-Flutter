@@ -1,0 +1,19 @@
+{
+    "loading": "Загрузка...",
+    "ingredients": "Ингредиенты:",
+    "elaboration": "Элаборация:",
+    "allergies": "Аллергии:",
+    "videoDetail": "Детали видео:",
+    "dessertDishes": "Десертные блюда",
+    "search": "Поиск",
+    "firstDishes": "Первые блюда",
+    "secondDishes": "Вторые блюда",
+    "kcalWebViewTitle": "Kcal WebView",
+    "home": "Домой",
+    "first": "Первые",
+    "seconds": "Секунды",
+    "desserts": "Десерты",
+    "kcal": "Ккал",
+    "errorOccurred": "Произошла ошибка",
+    "retry": "Повторить"
+}

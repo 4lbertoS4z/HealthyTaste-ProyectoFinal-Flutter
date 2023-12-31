@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthy_taste/generated/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.navigationShell});
@@ -19,26 +20,26 @@ class _HomePageState extends State<HomePage> {
           widget.navigationShell.goBranch(value,
               initialLocation: value == widget.navigationShell.currentIndex);
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: "First",
+            icon: const Icon(Icons.home_outlined),
+            selectedIcon: const Icon(Icons.home),
+            label: S.of(context).first,
           ),
           NavigationDestination(
-            icon: Icon(Icons.fastfood_outlined),
-            selectedIcon: Icon(Icons.fastfood),
-            label: "Seconds",
+            icon: const Icon(Icons.fastfood_outlined),
+            selectedIcon: const Icon(Icons.fastfood),
+            label: S.of(context).seconds,
           ),
           NavigationDestination(
-            icon: Icon(Icons.cake_outlined),
-            selectedIcon: Icon(Icons.cake),
-            label: "Desserts",
+            icon: const Icon(Icons.cake_outlined),
+            selectedIcon: const Icon(Icons.cake),
+            label: S.of(context).desserts,
           ),
           NavigationDestination(
-            icon: Icon(Icons.calculate_outlined),
-            selectedIcon: Icon(Icons.calculate),
-            label: "Kcal",
+            icon: const Icon(Icons.calculate_outlined),
+            selectedIcon: const Icon(Icons.calculate),
+            label: S.of(context).kcal,
           ),
         ],
       ),

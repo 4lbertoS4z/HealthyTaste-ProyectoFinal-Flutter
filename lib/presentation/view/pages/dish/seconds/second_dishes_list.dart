@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthy_taste/data/dish/local/second_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
+import 'package:healthy_taste/generated/l10n.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/seconds/second_dish_row.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/second_dish_view_model.dart';
@@ -87,7 +88,7 @@ class _SecondDishesListState extends State<SecondDishesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Second Dishes"),
+        title: Text(S.of(context).secondDishes),
       ),
       body: SafeArea(
         child: Column(
@@ -99,9 +100,9 @@ class _SecondDishesListState extends State<SecondDishesList> {
                 onChanged: (value) {
                   filterDishes(value);
                 },
-                decoration: const InputDecoration(
-                  labelText: 'Search',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: S.of(context).search,
+                  border: const OutlineInputBorder(),
                 ),
               ),
             ),

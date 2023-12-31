@@ -1,0 +1,19 @@
+{
+    "loading": "Loading...",
+    "ingredients": "Ingredients:",
+    "elaboration": "Elaboration:",
+    "allergies": "Allergies:",
+    "videoDetail": "Video Detail:",
+    "dessertDishes": "Dessert Dishes",
+    "search": "Search",
+    "firstDishes": "First Dishes",
+    "secondDishes": "Second Dishes",
+    "kcalWebViewTitle": "Kcal WebView",
+    "home": "Home",
+    "first": "First",
+    "seconds": "Seconds",
+    "desserts": "Desserts",
+    "kcal": "Kcal",
+    "errorOccurred": "An error occurred",
+    "retry": "Retry"
+}

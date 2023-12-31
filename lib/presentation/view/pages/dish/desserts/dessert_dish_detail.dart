@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
+import 'package:healthy_taste/generated/l10n.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/dessert_dish_view_model.dart';
 import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
@@ -78,11 +79,12 @@ class _DessertDishDetailState extends State<DessertDishDetail> {
               height: 200,
               fit: BoxFit.cover,
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Ingredients:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                S.of(context).ingredients,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -93,11 +95,12 @@ class _DessertDishDetailState extends State<DessertDishDetail> {
                 textAlign: TextAlign.justify,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Elaboration:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                S.of(context).elaboration,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -114,10 +117,10 @@ class _DessertDishDetailState extends State<DessertDishDetail> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Allergies:",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    Text(
+                      S.of(context).allergies,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     CachedNetworkImage(
                       imageUrl: _dishDetails!.details.imgAllergies,
@@ -127,9 +130,9 @@ class _DessertDishDetailState extends State<DessertDishDetail> {
                   ],
                 ),
               ),
-            const Text(
-              "Video Detail:",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(
+              S.of(context).videoDetail,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             if (_dishDetails!.details.urlVideo.isNotEmpty)
               Padding(

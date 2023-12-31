@@ -1,0 +1,19 @@
+{
+    "loading": "Caricamento...",
+    "ingredients": "Ingredienti:",
+    "elaboration": "Elaborazione:",
+    "allergies": "Allergie:",
+    "videoDetail": "Dettaglio Video:",
+    "dessertDishes": "Piatti di Dolce",
+    "search": "Cerca",
+    "firstDishes": "Piatti Primi",
+    "secondDishes": "Piatti Secondi",
+    "kcalWebViewTitle": "Kcal WebView",
+    "home": "Casa",
+    "first": "Primi",
+    "seconds": "Secondi",
+    "desserts": "Dolci",
+    "kcal": "Kcal",
+    "errorOccurred": "Si è verificato un errore",
+    "retry": "Riprova"
+}

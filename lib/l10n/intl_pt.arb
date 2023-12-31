@@ -1,0 +1,19 @@
+{
+    "loading": "Carregando...",
+    "ingredients": "Ingredientes:",
+    "elaboration": "Elaboração:",
+    "allergies": "Alergias:",
+    "videoDetail": "Detalhe do Vídeo:",
+    "dessertDishes": "Pratos de Sobremesa",
+    "search": "Pesquisar",
+    "firstDishes": "Pratos Principais",
+    "secondDishes": "Segundos Pratos",
+    "kcalWebViewTitle": "Kcal WebView",
+    "home": "Início",
+    "first": "Primeiros",
+    "seconds": "Segundos",
+    "desserts": "Sobremesas",
+    "kcal": "Kcal",
+    "errorOccurred": "Ocorreu um erro",
+    "retry": "Tentar Novamente"
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_taste/data/remote/network_constants.dart';
+import 'package:healthy_taste/generated/l10n.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class KcalWebView extends StatefulWidget {
@@ -22,7 +23,7 @@ class _KcalWebViewState extends State<KcalWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Kcal WebView')),
+      appBar: AppBar(title: Text(S.of(context).kcalWebViewTitle)),
       body: WebViewWidget(controller: controller),
     );
   }

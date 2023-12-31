@@ -17,6 +17,9 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   cached_network_image: ^3.3.0
   shared_preferences: ^2.2.2
+  intl: ^0.18.1
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -41,3 +44,9 @@ flutter_launcher_icons:
 flutter_native_splash:
   color: "#3b3b3b"
   image: "assets/icon/chef_app_icon.png"
+
+flutter_intl:
+  enabled: true
+  class_name: S
+  main_locale: en
+
