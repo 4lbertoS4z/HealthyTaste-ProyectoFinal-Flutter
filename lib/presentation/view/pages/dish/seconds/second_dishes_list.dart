@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_taste/data/dish/local/second_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
+import 'package:healthy_taste/domain/dish_local_repository.dart';
 import 'package:healthy_taste/generated/l10n.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/seconds/second_dish_row.dart';
@@ -22,13 +22,13 @@ class _SecondDishesListState extends State<SecondDishesList> {
   List<DishNetworkResponse> filteredDishes = [];
   TextEditingController searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  late SecondFavoritesService _favoritesService;
+  late DishLocalRepository _favoritesService;
 
   @override
   void initState() {
     super.initState();
-    _favoritesService = SecondFavoritesService();
-    _favoritesService.loadFavorites().then((_) {
+    _favoritesService = inject<DishLocalRepository>();
+    _favoritesService.loadSecondsDishFavorites().then((_) {
       setState(() {
         _sortDishes();
       });

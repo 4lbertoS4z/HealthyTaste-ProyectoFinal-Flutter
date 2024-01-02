@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
+import 'package:healthy_taste/domain/dish_local_repository.dart';
 import 'package:healthy_taste/domain/dish_repository.dart';
 import 'package:healthy_taste/presentation/base/base_view_model.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
@@ -11,7 +12,9 @@ class SecondDishViewModel extends BaseViewModel {
       getSecondDishState = StreamController();
   final StreamController<ResourceState<DishNetworkResponse>>
       getSecondDishDetailState = StreamController();
-  SecondDishViewModel({required DishRepository secondDishRepository})
+  SecondDishViewModel(
+      {required DishRepository secondDishRepository,
+      required DishLocalRepository localRepository})
       : _secondDishrepository = secondDishRepository;
 
   fetchtSecondDishes() {

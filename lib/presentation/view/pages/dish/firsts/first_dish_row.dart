@@ -1,25 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthy_taste/data/dish/local/first_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
+import 'package:healthy_taste/domain/dish_local_repository.dart';
 import 'package:healthy_taste/presentation/navigation/navigation_routes.dart';
 
 class FirstDishRow extends StatelessWidget {
-  const FirstDishRow({
-    super.key,
-    required this.firstDish,
-    required this.favoritesService, // Añade este parámetro
-    required this.onFavoriteChanged,
-  });
-
   final DishNetworkResponse firstDish;
-  final FirstFavoritesService favoritesService; // Añade esta línea
+  final DishLocalRepository favoritesService;
   final VoidCallback onFavoriteChanged;
+
+  const FirstDishRow({
+    Key? key,
+    required this.firstDish,
+    required this.favoritesService,
+    required this.onFavoriteChanged,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    bool isFavorite =
-        favoritesService.isFavorite(firstDish.id); // Verifica si es favorito
+    bool isFavorite = favoritesService.isFavorite(firstDish.id);
+
     return GestureDetector(
       onTap: () {
         context.go(Uri(
@@ -36,12 +37,11 @@ class FirstDishRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius:
-                    BorderRadius.circular(8.0), // Añade esquinas redondeadas
+                borderRadius: BorderRadius.circular(8.0),
                 child: CachedNetworkImage(
                   imageUrl: firstDish.image,
-                  width: 100, // Ancho fijo
-                  height: 100, // Altura fija
+                  width: 100,
+                  height: 100,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
@@ -59,16 +59,14 @@ class FirstDishRow extends StatelessWidget {
                 ),
               ),
               IconButton(
-                // Añade el botón de favoritos
                 icon: Icon(
                   isFavorite ? Icons.star : Icons.star_border,
-                  color: isFavorite ? Colors.blue : Colors.blue,
+                  color: isFavorite ? Colors.blue : Colors.grey,
                 ),
                 onPressed: () {
                   favoritesService.toggleFavorite(firstDish.id);
-                  favoritesService
-                      .saveFavorites(); // Guarda el cambio de estado
-                  onFavoriteChanged(); // Llama al callback para actualizar la lista
+                  favoritesService.saveFirstDishFavorites();
+                  onFavoriteChanged();
                 },
               ),
             ],

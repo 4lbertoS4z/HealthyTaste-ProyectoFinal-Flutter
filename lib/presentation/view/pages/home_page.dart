@@ -22,8 +22,8 @@ class _HomePageState extends State<HomePage> {
         },
         destinations: [
           NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
+            icon: const Icon(Icons.local_dining_outlined),
+            selectedIcon: const Icon(Icons.local_dining),
             label: S.of(context).first,
           ),
           NavigationDestination(

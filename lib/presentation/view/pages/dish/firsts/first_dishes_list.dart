@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_taste/data/dish/local/first_favorites_service.dart';
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
 import 'package:healthy_taste/di/app_module.dart';
+import 'package:healthy_taste/domain/dish_local_repository.dart';
 import 'package:healthy_taste/generated/l10n.dart';
 import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/firsts/first_dish_row.dart';
@@ -10,7 +10,7 @@ import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
 
 class FirstDishesList extends StatefulWidget {
-  const FirstDishesList({super.key});
+  const FirstDishesList({Key? key}) : super(key: key);
 
   @override
   State<FirstDishesList> createState() => _FirstDishesListState();
@@ -22,13 +22,13 @@ class _FirstDishesListState extends State<FirstDishesList> {
   List<DishNetworkResponse> filteredDishes = [];
   TextEditingController searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  late FirstFavoritesService _favoritesService;
+  late DishLocalRepository _favoritesService;
 
   @override
   void initState() {
     super.initState();
-    _favoritesService = FirstFavoritesService();
-    _favoritesService.loadFavorites().then((_) {
+    _favoritesService = inject<DishLocalRepository>();
+    _favoritesService.loadFirstDishFavorites().then((_) {
       setState(() {
         _sortDishes();
       });
