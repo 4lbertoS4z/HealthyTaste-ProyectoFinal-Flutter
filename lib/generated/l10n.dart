@@ -219,6 +219,16 @@ class S {
       args: [],
     );
   }
+
+  /// `daily nutrient percentage per person`
+  String get nutrients {
+    return Intl.message(
+      'daily nutrient percentage per person',
+      name: 'nutrients',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -233,7 +243,6 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
       Locale.fromSubtags(languageCode: 'it'),
       Locale.fromSubtags(languageCode: 'ja'),
       Locale.fromSubtags(languageCode: 'pt'),
-      Locale.fromSubtags(languageCode: 'ru'),
     ];
   }
 

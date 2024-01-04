@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kcalWebViewTitle":
             MessageLookupByLibrary.simpleMessage("Kcal WebView"),
         "loading": MessageLookupByLibrary.simpleMessage("Laden..."),
+        "nutrients": MessageLookupByLibrary.simpleMessage(
+            "täglicher Nährstoffanteil pro Person"),
         "retry": MessageLookupByLibrary.simpleMessage("Wiederholen"),
         "search": MessageLookupByLibrary.simpleMessage("Suche"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("Zweite Gerichte"),

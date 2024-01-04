@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "kcal": MessageLookupByLibrary.simpleMessage("カロリー"),
         "kcalWebViewTitle": MessageLookupByLibrary.simpleMessage("Kcal ウェブビュー"),
         "loading": MessageLookupByLibrary.simpleMessage("読み込み中..."),
+        "nutrients": MessageLookupByLibrary.simpleMessage("一人あたりの日々の栄養素の割合"),
         "retry": MessageLookupByLibrary.simpleMessage("再試行"),
         "search": MessageLookupByLibrary.simpleMessage("検索"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("セカンド料理"),

@@ -15,5 +15,6 @@
     "desserts": "Desserts",
     "kcal": "Kcal",
     "errorOccurred": "An error occurred",
-    "retry": "Retry"
+    "retry": "Retry",
+    "nutrients": "daily nutrient percentage per person"
 }

@@ -15,5 +15,6 @@
     "desserts": "Sobremesas",
     "kcal": "Kcal",
     "errorOccurred": "Ocorreu um erro",
-    "retry": "Tentar Novamente"
+    "retry": "Tentar Novamente",
+    "nutrients": "percentual diário de nutrientes por pessoa"
 }

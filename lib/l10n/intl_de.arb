@@ -15,5 +15,6 @@
     "desserts": "Desserts",
     "kcal": "Kcal",
     "errorOccurred": "Ein Fehler ist aufgetreten",
-    "retry": "Wiederholen"
+    "retry": "Wiederholen",
+    "nutrients": "täglicher Nährstoffanteil pro Person"
 }

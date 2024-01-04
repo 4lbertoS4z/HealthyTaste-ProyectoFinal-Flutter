@@ -15,5 +15,6 @@
     "desserts": "デザート",
     "kcal": "カロリー",
     "errorOccurred": "エラーが発生しました",
-    "retry": "再試行"
+    "retry": "再試行",
+    "nutrients": "一人あたりの日々の栄養素の割合"
 }

@@ -15,5 +15,6 @@
     "desserts": "Dolci",
     "kcal": "Kcal",
     "errorOccurred": "Si è verificato un errore",
-    "retry": "Riprova"
+    "retry": "Riprova",
+    "nutrients": "percentuale giornaliera di nutrienti per persona"
 }

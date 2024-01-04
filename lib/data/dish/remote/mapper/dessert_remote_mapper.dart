@@ -12,6 +12,10 @@ class DessertRemoteMapper {
         imgAllergies: responseModel.details.imgAllergies,
         ingredients: responseModel.details.ingredients,
         urlVideo: responseModel.details.urlVideo,
+        calories: responseModel.details.calories,
+        proteins: responseModel.details.proteins,
+        fats: responseModel.details.fats,
+        carbohydrates: responseModel.details.carbohydrates,
       ),
     );
   }

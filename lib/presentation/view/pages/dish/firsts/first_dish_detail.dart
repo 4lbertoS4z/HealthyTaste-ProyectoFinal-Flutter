@@ -7,6 +7,7 @@ import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/first_dish_view_model.dart';
 import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
+import 'package:healthy_taste/presentation/widgets/nutrients/nutrition_chart.dart';
 import 'package:healthy_taste/presentation/widgets/youtube/video_player_screen.dart';
 
 class FirstDishDetail extends StatefulWidget {
@@ -36,10 +37,12 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
             setState(() {
               _dishDetails = state.data;
             });
+            debugPrint('First dish detail loaded: ${_dishDetails.toString()}');
             LoadingView.hide();
           }
           break;
         case Status.ERROR:
+          debugPrint('Error loading first dish detail: ${state.exception}');
           LoadingView.hide();
           ErrorView.show(context, state.exception!.toString(), () {
             _viewModel.fetchFirstDish(widget.id);
@@ -58,6 +61,7 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Building FirstDishDetail Widget');
     return Scaffold(
       appBar: AppBar(
         title: Text(_dishDetails?.name ?? 'Loading...'),
@@ -71,6 +75,7 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
     if (_dishDetails == null) {
       return const CircularProgressIndicator();
     } else {
+      debugPrint('Showing details for dish: ${_dishDetails!.name}');
       return SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,6 +135,21 @@ class _FirstDishDetailState extends State<FirstDishDetail> {
                       height: 50,
                     )
                   ],
+                ),
+              ),
+            Text(
+              S.of(context).nutrients,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            if (_dishDetails != null)
+              SizedBox(
+                height: 200, // Define un alto fijo
+                width: double.infinity,
+                child: NutritionChart(
+                  calories: _dishDetails!.details.calories,
+                  proteins: _dishDetails!.details.proteins,
+                  fats: _dishDetails!.details.fats,
+                  carbohydrates: _dishDetails!.details.carbohydrates,
                 ),
               ),
             Text(

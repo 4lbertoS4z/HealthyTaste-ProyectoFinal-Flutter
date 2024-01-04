@@ -2,7 +2,7 @@
 
 class NetworkConstants {
   static const String BASE_URL =
-      "https://healthytaste-bb33f-default-rtdb.firebaseio.com";
+      "https://api-cocina-default-rtdb.europe-west1.firebasedatabase.app";
 
   static const String FIRST_PATH = "$BASE_URL/first/.json";
   static const String FIRST_DETAIL_PATH = "$BASE_URL/first/";

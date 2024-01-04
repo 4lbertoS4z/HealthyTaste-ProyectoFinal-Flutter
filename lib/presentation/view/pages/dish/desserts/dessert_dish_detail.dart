@@ -7,6 +7,7 @@ import 'package:healthy_taste/presentation/model/resource_state.dart';
 import 'package:healthy_taste/presentation/view/pages/dish/viewmodel/dessert_dish_view_model.dart';
 import 'package:healthy_taste/presentation/widgets/error/error_view.dart';
 import 'package:healthy_taste/presentation/widgets/loading/loading_view.dart';
+import 'package:healthy_taste/presentation/widgets/nutrients/nutrition_chart.dart';
 import 'package:healthy_taste/presentation/widgets/youtube/video_player_screen.dart';
 
 class DessertDishDetail extends StatefulWidget {
@@ -128,6 +129,21 @@ class _DessertDishDetailState extends State<DessertDishDetail> {
                       height: 50,
                     )
                   ],
+                ),
+              ),
+            Text(
+              S.of(context).nutrients,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            if (_dishDetails != null)
+              SizedBox(
+                height: 200, // Define un alto fijo
+                width: double.infinity,
+                child: NutritionChart(
+                  calories: _dishDetails!.details.calories,
+                  proteins: _dishDetails!.details.proteins,
+                  fats: _dishDetails!.details.fats,
+                  carbohydrates: _dishDetails!.details.carbohydrates,
                 ),
               ),
             Text(
