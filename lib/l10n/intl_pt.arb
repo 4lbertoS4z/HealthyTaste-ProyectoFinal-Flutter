@@ -16,5 +16,9 @@
     "kcal": "Kcal",
     "errorOccurred": "Ocorreu um erro",
     "retry": "Tentar Novamente",
-    "nutrients": "percentual diário de nutrientes por pessoa"
+    "nutrients": "percentual diário de nutrientes por pessoa",
+    "calories": "Calorias",
+    "protein": "Proteína",
+    "fats": "Gorduras",
+    "sugar": "Açúcar"
 }

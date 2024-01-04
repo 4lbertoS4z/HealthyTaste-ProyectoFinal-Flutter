@@ -23,12 +23,14 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "allergies": MessageLookupByLibrary.simpleMessage("Alergias:"),
+        "calories": MessageLookupByLibrary.simpleMessage("Calorias"),
         "dessertDishes":
             MessageLookupByLibrary.simpleMessage("Pratos de Sobremesa"),
         "desserts": MessageLookupByLibrary.simpleMessage("Sobremesas"),
         "elaboration": MessageLookupByLibrary.simpleMessage("Elaboração:"),
         "errorOccurred":
             MessageLookupByLibrary.simpleMessage("Ocorreu um erro"),
+        "fats": MessageLookupByLibrary.simpleMessage("Gorduras"),
         "first": MessageLookupByLibrary.simpleMessage("Primeiros"),
         "firstDishes":
             MessageLookupByLibrary.simpleMessage("Pratos Principais"),
@@ -40,10 +42,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Carregando..."),
         "nutrients": MessageLookupByLibrary.simpleMessage(
             "percentual diário de nutrientes por pessoa"),
+        "protein": MessageLookupByLibrary.simpleMessage("Proteína"),
         "retry": MessageLookupByLibrary.simpleMessage("Tentar Novamente"),
         "search": MessageLookupByLibrary.simpleMessage("Pesquisar"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("Segundos Pratos"),
         "seconds": MessageLookupByLibrary.simpleMessage("Segundos"),
+        "sugar": MessageLookupByLibrary.simpleMessage("Açúcar"),
         "videoDetail": MessageLookupByLibrary.simpleMessage("Detalhe do Vídeo:")
       };
 }

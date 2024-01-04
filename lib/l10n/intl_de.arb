@@ -16,5 +16,9 @@
     "kcal": "Kcal",
     "errorOccurred": "Ein Fehler ist aufgetreten",
     "retry": "Wiederholen",
-    "nutrients": "täglicher Nährstoffanteil pro Person"
+    "nutrients": "täglicher Nährstoffprozentsatz pro Person",
+    "calories": "Kalorien",
+    "protein": "Protein",
+    "fats": "Fette",
+    "sugar": "Zucker"
 }

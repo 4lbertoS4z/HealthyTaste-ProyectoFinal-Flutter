@@ -8,7 +8,7 @@
     "search": "Buscar",
     "firstDishes": "Primeros Platos",
     "secondDishes": "Segundos Platos",
-    "kcalWebViewTitle": "WebView de Kcal",
+    "kcalWebViewTitle": "Kcal WebView",
     "home": "Inicio",
     "first": "Primeros",
     "seconds": "Segundos",
@@ -16,5 +16,9 @@
     "kcal": "Kcal",
     "errorOccurred": "Ocurrió un error",
     "retry": "Reintentar",
-    "nutrients": "% diario de nutrientes por persona"
+    "nutrients": " % diario de nutrientes por persona",
+    "calories": "%Calorías",
+    "protein": "%Proteína",
+    "fats": "%Grasas",
+    "sugar": "%Azúcar"
 }

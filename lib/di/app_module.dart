@@ -29,17 +29,14 @@ class AppModules {
 
     inject.registerFactory(() => FirstDishViewModel(
         firstDishRepository: inject.get(),
-        localRepository:
-            inject.get<DishLocalRepository>())); // Añade la dependencia
+        localRepository: inject.get<DishLocalRepository>()));
 
     inject.registerFactory(() => SecondDishViewModel(
         secondDishRepository: inject.get(),
-        localRepository:
-            inject.get<DishLocalRepository>())); // Añade la dependencia
+        localRepository: inject.get<DishLocalRepository>()));
 
     inject.registerFactory(() => DessertDishViewModel(
         dessertDishRepository: inject.get(),
-        localRepository:
-            inject.get<DishLocalRepository>())); // Añade la dependencia
+        localRepository: inject.get<DishLocalRepository>()));
   }
 }

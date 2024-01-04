@@ -21,6 +21,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   fl_chart: ^0.66.0
+  connectivity_plus: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,8 @@ flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
   image_path: "assets/icon/chef_app_icon.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icon/chef_app_icon.png"
   min_sdk_android: 21
 
 flutter_native_splash:

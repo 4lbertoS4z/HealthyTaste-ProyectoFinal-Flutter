@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:healthy_taste/generated/l10n.dart';
 
 class NutritionChart extends StatelessWidget {
   final double? calories;
@@ -20,7 +21,7 @@ class NutritionChart extends StatelessWidget {
     this.carbohydrates,
   }) : super(key: key);
   double calculatePercentage(double value, double limit) {
-    return (value / limit) * 100;
+    return ((value / limit) * 100).roundToDouble();
   }
 
   @override
@@ -96,13 +97,13 @@ class NutritionChart extends StatelessWidget {
               getTitlesWidget: (double value, TitleMeta meta) {
                 switch (value.toInt()) {
                   case 0:
-                    return const Text('Calorías');
+                    return Text(S.of(context).calories);
                   case 1:
-                    return const Text('Proteínas');
+                    return Text(S.of(context).protein);
                   case 2:
-                    return const Text('Grasas');
+                    return Text(S.of(context).fats);
                   case 3:
-                    return const Text('Carbohidratos');
+                    return Text(S.of(context).sugar);
                   default:
                     return const Text('');
                 }

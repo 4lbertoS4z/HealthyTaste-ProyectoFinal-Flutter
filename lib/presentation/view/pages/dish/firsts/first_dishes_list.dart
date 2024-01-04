@@ -55,6 +55,7 @@ class _FirstDishesListState extends State<FirstDishesList> {
           ErrorView.show(context, state.exception!.toString(), () {
             _viewModel.fetchtFirstDishes();
           });
+
           break;
       }
     });

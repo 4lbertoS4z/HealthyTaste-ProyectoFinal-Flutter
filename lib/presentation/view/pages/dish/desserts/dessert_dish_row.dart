@@ -9,17 +9,16 @@ class DessertDishRow extends StatelessWidget {
   const DessertDishRow({
     super.key,
     required this.dessertDish,
-    required this.favoritesService, // Añade este parámetro
+    required this.favoritesService,
     required this.onFavoriteChanged,
   });
 
   final DishNetworkResponse dessertDish;
-  final DishLocalRepository favoritesService; // Añade esta línea
+  final DishLocalRepository favoritesService;
   final VoidCallback onFavoriteChanged;
   @override
   Widget build(BuildContext context) {
-    bool isFavorite =
-        favoritesService.isFavorite(dessertDish.id); // Verifica si es favorito
+    bool isFavorite = favoritesService.isFavorite(dessertDish.id);
     return GestureDetector(
       onTap: () {
         context.go(Uri(
@@ -36,12 +35,11 @@ class DessertDishRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ClipRRect(
-                borderRadius:
-                    BorderRadius.circular(8.0), // Añade esquinas redondeadas
+                borderRadius: BorderRadius.circular(8.0),
                 child: CachedNetworkImage(
                   imageUrl: dessertDish.image,
-                  width: 100, // Ancho fijo
-                  height: 100, // Altura fija
+                  width: 100,
+                  height: 100,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
@@ -59,16 +57,14 @@ class DessertDishRow extends StatelessWidget {
                 ),
               ),
               IconButton(
-                // Añade el botón de favoritos
                 icon: Icon(
                   isFavorite ? Icons.star : Icons.star_border,
                   color: isFavorite ? Colors.blue : Colors.grey,
                 ),
                 onPressed: () {
                   favoritesService.toggleFavorite(dessertDish.id);
-                  favoritesService
-                      .saveDessertsDishFavorites(); // Guarda el cambio de estado
-                  onFavoriteChanged(); // Llama al callback para actualizar la lista
+                  favoritesService.saveDessertsDishFavorites();
+                  onFavoriteChanged();
                 },
               ),
             ],

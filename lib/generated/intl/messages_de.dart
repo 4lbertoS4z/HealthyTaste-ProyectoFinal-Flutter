@@ -23,12 +23,14 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "allergies": MessageLookupByLibrary.simpleMessage("Allergien:"),
+        "calories": MessageLookupByLibrary.simpleMessage("Kalorien"),
         "dessertDishes":
             MessageLookupByLibrary.simpleMessage("Nachtischgerichte"),
         "desserts": MessageLookupByLibrary.simpleMessage("Desserts"),
         "elaboration": MessageLookupByLibrary.simpleMessage("Verarbeitung:"),
         "errorOccurred":
             MessageLookupByLibrary.simpleMessage("Ein Fehler ist aufgetreten"),
+        "fats": MessageLookupByLibrary.simpleMessage("Fette"),
         "first": MessageLookupByLibrary.simpleMessage("Erste"),
         "firstDishes": MessageLookupByLibrary.simpleMessage("Erste Gerichte"),
         "home": MessageLookupByLibrary.simpleMessage("Startseite"),
@@ -38,11 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Kcal WebView"),
         "loading": MessageLookupByLibrary.simpleMessage("Laden..."),
         "nutrients": MessageLookupByLibrary.simpleMessage(
-            "täglicher Nährstoffanteil pro Person"),
+            "täglicher Nährstoffprozentsatz pro Person"),
+        "protein": MessageLookupByLibrary.simpleMessage("Protein"),
         "retry": MessageLookupByLibrary.simpleMessage("Wiederholen"),
         "search": MessageLookupByLibrary.simpleMessage("Suche"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("Zweite Gerichte"),
         "seconds": MessageLookupByLibrary.simpleMessage("Sekunden"),
+        "sugar": MessageLookupByLibrary.simpleMessage("Zucker"),
         "videoDetail": MessageLookupByLibrary.simpleMessage("Videodetail:")
       };
 }

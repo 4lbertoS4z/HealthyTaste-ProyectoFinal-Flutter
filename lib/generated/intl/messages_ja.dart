@@ -23,10 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "allergies": MessageLookupByLibrary.simpleMessage("アレルギー:"),
+        "calories": MessageLookupByLibrary.simpleMessage("カロリー"),
         "dessertDishes": MessageLookupByLibrary.simpleMessage("デザート料理"),
         "desserts": MessageLookupByLibrary.simpleMessage("デザート"),
         "elaboration": MessageLookupByLibrary.simpleMessage("説明:"),
         "errorOccurred": MessageLookupByLibrary.simpleMessage("エラーが発生しました"),
+        "fats": MessageLookupByLibrary.simpleMessage("脂肪"),
         "first": MessageLookupByLibrary.simpleMessage("最初"),
         "firstDishes": MessageLookupByLibrary.simpleMessage("最初の料理"),
         "home": MessageLookupByLibrary.simpleMessage("ホーム"),
@@ -34,11 +36,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "kcal": MessageLookupByLibrary.simpleMessage("カロリー"),
         "kcalWebViewTitle": MessageLookupByLibrary.simpleMessage("Kcal ウェブビュー"),
         "loading": MessageLookupByLibrary.simpleMessage("読み込み中..."),
-        "nutrients": MessageLookupByLibrary.simpleMessage("一人あたりの日々の栄養素の割合"),
+        "nutrients": MessageLookupByLibrary.simpleMessage("一人当たりの1日の栄養素割合"),
+        "protein": MessageLookupByLibrary.simpleMessage("タンパク質"),
         "retry": MessageLookupByLibrary.simpleMessage("再試行"),
         "search": MessageLookupByLibrary.simpleMessage("検索"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("セカンド料理"),
         "seconds": MessageLookupByLibrary.simpleMessage("秒"),
+        "sugar": MessageLookupByLibrary.simpleMessage("糖分"),
         "videoDetail": MessageLookupByLibrary.simpleMessage("ビデオの詳細:")
       };
 }

@@ -229,6 +229,46 @@ class S {
       args: [],
     );
   }
+
+  /// `%Calories`
+  String get calories {
+    return Intl.message(
+      '%Calories',
+      name: 'calories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `%Protein`
+  String get protein {
+    return Intl.message(
+      '%Protein',
+      name: 'protein',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `%Fats`
+  String get fats {
+    return Intl.message(
+      '%Fats',
+      name: 'fats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `%Sugar`
+  String get sugar {
+    return Intl.message(
+      '%Sugar',
+      name: 'sugar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -137,14 +137,17 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             if (_dishDetails != null)
-              SizedBox(
-                height: 200, // Define un alto fijo
-                width: double.infinity,
-                child: NutritionChart(
-                  calories: _dishDetails!.details.calories,
-                  proteins: _dishDetails!.details.proteins,
-                  fats: _dishDetails!.details.fats,
-                  carbohydrates: _dishDetails!.details.carbohydrates,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 200,
+                  width: double.infinity,
+                  child: NutritionChart(
+                    calories: _dishDetails!.details.calories,
+                    proteins: _dishDetails!.details.proteins,
+                    fats: _dishDetails!.details.fats,
+                    carbohydrates: _dishDetails!.details.carbohydrates,
+                  ),
                 ),
               ),
             Text(

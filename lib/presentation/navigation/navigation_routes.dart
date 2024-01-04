@@ -14,7 +14,6 @@ import 'package:healthy_taste/presentation/view/splash/splash_page.dart';
 class NavigationRoutes {
   // Routes
   static const String INITIAL_ROUTE = "/";
-  // static const String HOME_CATEGORIES_ROUTE = "/home-categories";
   static const FIRST_DISH_ROUTE = "/first";
   static const SECOND_DISH_ROUTE = "/second";
   static const THIRD_DISH_ROUTE = "/third";

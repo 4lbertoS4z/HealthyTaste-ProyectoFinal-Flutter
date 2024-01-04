@@ -16,5 +16,9 @@
     "kcal": "カロリー",
     "errorOccurred": "エラーが発生しました",
     "retry": "再試行",
-    "nutrients": "一人あたりの日々の栄養素の割合"
+    "nutrients": "一人当たりの1日の栄養素割合",
+    "calories": "カロリー",
+    "protein": "タンパク質",
+    "fats": "脂肪",
+    "sugar": "糖分"
 }

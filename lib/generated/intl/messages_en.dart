@@ -23,11 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "allergies": MessageLookupByLibrary.simpleMessage("Allergies:"),
+        "calories": MessageLookupByLibrary.simpleMessage("%Calories"),
         "dessertDishes": MessageLookupByLibrary.simpleMessage("Dessert Dishes"),
         "desserts": MessageLookupByLibrary.simpleMessage("Desserts"),
         "elaboration": MessageLookupByLibrary.simpleMessage("Elaboration:"),
         "errorOccurred":
             MessageLookupByLibrary.simpleMessage("An error occurred"),
+        "fats": MessageLookupByLibrary.simpleMessage("%Fats"),
         "first": MessageLookupByLibrary.simpleMessage("First"),
         "firstDishes": MessageLookupByLibrary.simpleMessage("First Dishes"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -38,10 +40,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "nutrients": MessageLookupByLibrary.simpleMessage(
             "daily nutrient percentage per person"),
+        "protein": MessageLookupByLibrary.simpleMessage("%Protein"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("Second Dishes"),
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
+        "sugar": MessageLookupByLibrary.simpleMessage("%Sugar"),
         "videoDetail": MessageLookupByLibrary.simpleMessage("Video Detail:")
       };
 }

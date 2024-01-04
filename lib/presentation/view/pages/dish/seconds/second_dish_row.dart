@@ -9,12 +9,12 @@ class SecondDishRow extends StatelessWidget {
   const SecondDishRow({
     super.key,
     required this.secondDish,
-    required this.favoritesService, // Añade este parámetro
+    required this.favoritesService,
     required this.onFavoriteChanged,
   });
 
   final DishNetworkResponse secondDish;
-  final DishLocalRepository favoritesService; // Añade esta línea
+  final DishLocalRepository favoritesService;
   final VoidCallback onFavoriteChanged;
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,11 @@ class SecondDishRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ClipRRect(
-                borderRadius:
-                    BorderRadius.circular(8.0), // Añade esquinas redondeadas
+                borderRadius: BorderRadius.circular(8.0),
                 child: CachedNetworkImage(
                   imageUrl: secondDish.image,
-                  width: 100, // Ancho fijo
-                  height: 100, // Altura fija
+                  width: 100,
+                  height: 100,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
@@ -58,16 +57,14 @@ class SecondDishRow extends StatelessWidget {
                 ),
               ),
               IconButton(
-                // Añade el botón de favoritos
                 icon: Icon(
                   isFavorite ? Icons.star : Icons.star_border,
                   color: isFavorite ? Colors.blue : Colors.grey,
                 ),
                 onPressed: () {
                   favoritesService.toggleFavorite(secondDish.id);
-                  favoritesService
-                      .saveSecondsDishFavorites(); // Guarda el cambio de estado
-                  onFavoriteChanged(); // Llama al callback para actualizar la lista
+                  favoritesService.saveSecondsDishFavorites();
+                  onFavoriteChanged();
                 },
               ),
             ],

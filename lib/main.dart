@@ -16,22 +16,14 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // Configura los delegados de localización
       localizationsDelegates: const [
-        S.delegate, // Delegado generado por flutter_intl
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-
-      // Define los locales soportados
       supportedLocales: S.delegate.supportedLocales,
-
-      // Configuración del router existente
       routerConfig: router,
-
-      // Otras configuraciones de tu MaterialApp
-      // Puedes añadir aquí configuraciones como theme, debugShowCheckedModeBanner, etc.
     );
   }
 }

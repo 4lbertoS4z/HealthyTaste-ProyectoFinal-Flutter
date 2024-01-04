@@ -23,26 +23,30 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "allergies": MessageLookupByLibrary.simpleMessage("Alergias:"),
+        "calories": MessageLookupByLibrary.simpleMessage("%Calorías"),
         "dessertDishes":
             MessageLookupByLibrary.simpleMessage("Platos de Postre"),
         "desserts": MessageLookupByLibrary.simpleMessage("Postres"),
         "elaboration": MessageLookupByLibrary.simpleMessage("Elaboración:"),
         "errorOccurred":
             MessageLookupByLibrary.simpleMessage("Ocurrió un error"),
+        "fats": MessageLookupByLibrary.simpleMessage("%Grasas"),
         "first": MessageLookupByLibrary.simpleMessage("Primeros"),
         "firstDishes": MessageLookupByLibrary.simpleMessage("Primeros Platos"),
         "home": MessageLookupByLibrary.simpleMessage("Inicio"),
         "ingredients": MessageLookupByLibrary.simpleMessage("Ingredientes:"),
         "kcal": MessageLookupByLibrary.simpleMessage("Kcal"),
         "kcalWebViewTitle":
-            MessageLookupByLibrary.simpleMessage("WebView de Kcal"),
+            MessageLookupByLibrary.simpleMessage("Kcal WebView"),
         "loading": MessageLookupByLibrary.simpleMessage("Cargando..."),
         "nutrients": MessageLookupByLibrary.simpleMessage(
-            "% diario de nutrientes por persona"),
+            " % diario de nutrientes por persona"),
+        "protein": MessageLookupByLibrary.simpleMessage("%Proteína"),
         "retry": MessageLookupByLibrary.simpleMessage("Reintentar"),
         "search": MessageLookupByLibrary.simpleMessage("Buscar"),
         "secondDishes": MessageLookupByLibrary.simpleMessage("Segundos Platos"),
         "seconds": MessageLookupByLibrary.simpleMessage("Segundos"),
+        "sugar": MessageLookupByLibrary.simpleMessage("%Azúcar"),
         "videoDetail":
             MessageLookupByLibrary.simpleMessage("Detalle del Video:")
       };
