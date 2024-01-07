@@ -18,7 +18,7 @@ class SecondDishRow extends StatelessWidget {
   final VoidCallback onFavoriteChanged;
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = favoritesService.isFavorite(secondDish.id);
+    bool isFavorite = favoritesService.isSecondsFavorite(secondDish.id);
     return GestureDetector(
       onTap: () {
         context.go(Uri(
@@ -77,7 +77,7 @@ class SecondDishRow extends StatelessWidget {
                   color: isFavorite ? Colors.blue : Colors.grey,
                 ),
                 onPressed: () {
-                  favoritesService.toggleFavorite(secondDish.id);
+                  favoritesService.toggleSecondsFavorite(secondDish.id);
                   favoritesService.saveSecondsDishFavorites();
                   onFavoriteChanged();
                 },

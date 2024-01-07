@@ -67,8 +67,8 @@ class _SecondDishesListState extends State<SecondDishesList> {
 
   void _sortDishes() {
     filteredDishes.sort((a, b) {
-      final aIsFavorite = _favoritesService.isFavorite(a.id);
-      final bIsFavorite = _favoritesService.isFavorite(b.id);
+      final aIsFavorite = _favoritesService.isSecondsFavorite(a.id);
+      final bIsFavorite = _favoritesService.isSecondsFavorite(b.id);
       if (aIsFavorite == bIsFavorite) return 0;
       return aIsFavorite ? -1 : 1;
     });

@@ -19,7 +19,7 @@ class FirstDishRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = favoritesService.isFavorite(firstDish.id);
+    bool isFavorite = favoritesService.isFirstFavorite(firstDish.id);
 
     return GestureDetector(
       onTap: () {
@@ -79,7 +79,7 @@ class FirstDishRow extends StatelessWidget {
                   color: isFavorite ? Colors.blue : Colors.grey,
                 ),
                 onPressed: () {
-                  favoritesService.toggleFavorite(firstDish.id);
+                  favoritesService.toggleFirstFavorite(firstDish.id);
                   favoritesService.saveFirstDishFavorites();
                   onFavoriteChanged();
                 },
