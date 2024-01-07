@@ -1,5 +1,6 @@
 import 'package:healthy_taste/data/dish/remote/model/dish_network_response.dart';
-import 'package:healthy_taste/model/first.dart';
+import 'package:healthy_taste/model/details.dart';
+import 'package:healthy_taste/model/second.dart';
 
 class SecondRemoteMapper {
   static Second fromRemote(DishNetworkResponse responseModel) {
@@ -7,6 +8,7 @@ class SecondRemoteMapper {
       id: responseModel.id,
       name: responseModel.name,
       image: responseModel.image,
+      numPersons: responseModel.numPersons,
       details: Details(
         elaboration: responseModel.details.elaboration,
         imgAllergies: responseModel.details.imgAllergies,

@@ -37,11 +37,9 @@ class SecondDishViewModel extends BaseViewModel {
   Future<void> fetchSecondDish(int id) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet
       getSecondDishDetailState
           .add(ResourceState.error(Exception('No internet Connect')));
     } else {
-      // Hay conexión a Internet, realiza la llamada a la API
       _secondDishrepository.getSecondDishById(id).then((value) {
         getSecondDishDetailState.add(ResourceState.success(value));
       }).catchError((e) {

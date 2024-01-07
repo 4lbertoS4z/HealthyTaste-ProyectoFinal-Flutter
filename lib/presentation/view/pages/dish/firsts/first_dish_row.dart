@@ -50,12 +50,27 @@ class FirstDishRow extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Text(
-                  firstDish.name,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      firstDish.name,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.restaurant, size: 16),
+                        const SizedBox(width: 4),
+                        Text(
+                          "${firstDish.numPersons}",
+                          style: const TextStyle(fontSize: 14.0),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               IconButton(

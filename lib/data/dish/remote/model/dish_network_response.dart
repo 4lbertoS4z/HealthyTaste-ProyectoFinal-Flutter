@@ -1,12 +1,14 @@
 class DishNetworkResponse {
   DetailsResponse details;
   int id;
+  int numPersons;
   String image;
   String name;
 
   DishNetworkResponse({
     required this.details,
     required this.id,
+    required this.numPersons,
     required this.image,
     required this.name,
   });
@@ -17,6 +19,7 @@ class DishNetworkResponse {
         id: json["id"],
         image: json["image"],
         name: json["name"],
+        numPersons: json["numPersons"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -24,6 +27,7 @@ class DishNetworkResponse {
         "id": id,
         "image": image,
         "name": name,
+        "numPersons": numPersons,
       };
 }
 
@@ -53,10 +57,10 @@ class DetailsResponse {
         imgAllergies: json["img_allergies"] ?? '',
         ingredients: List<String>.from(json["ingredients"].map((x) => x)),
         urlVideo: json["url_video"] ?? '',
-        calories: json["Calorías"]?.toDouble() ?? 0.0,
-        proteins: json["Proteínas"]?.toDouble() ?? 0.0,
-        fats: json["Grasas"]?.toDouble() ?? 0.0,
-        carbohydrates: json["Carbohidratos"]?.toDouble() ?? 0.0,
+        calories: json["calories"]?.toDouble() ?? 0.0,
+        proteins: json["protein"]?.toDouble() ?? 0.0,
+        fats: json["fats"]?.toDouble() ?? 0.0,
+        carbohydrates: json["sugar"]?.toDouble() ?? 0.0,
       );
 
   Map<String, dynamic> toMap() => {
@@ -64,9 +68,9 @@ class DetailsResponse {
         "img_allergies": imgAllergies,
         "ingredients": List<dynamic>.from(ingredients.map((x) => x)),
         "url_video": urlVideo,
-        "Calorías": calories,
-        "Proteínas": proteins,
-        "Grasas": fats,
-        "Carbohidratos": carbohydrates,
+        "calories": calories,
+        "protein": proteins,
+        "fats": fats,
+        "sugar": carbohydrates,
       };
 }

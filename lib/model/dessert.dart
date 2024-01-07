@@ -1,13 +1,13 @@
 import 'package:healthy_taste/model/details.dart';
 
-class First {
+class Dessert {
   Details details;
   int id;
   int numPersons;
   String image;
   String name;
 
-  First({
+  Dessert({
     required this.details,
     required this.id,
     required this.numPersons,

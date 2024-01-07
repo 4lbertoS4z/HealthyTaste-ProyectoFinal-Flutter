@@ -22,14 +22,12 @@ class FirstDishViewModel extends BaseViewModel {
       required DishLocalRepository localRepository})
       : _firstDishRepository = firstDishRepository;
 
-  /*Future<void>*/ fetchtFirstDishes() async {
+  Future<void> fetchtFirstDishes() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet
       getFirstDishesState
           .add(ResourceState.error(Exception('No Internet Connect')));
     } else {
-      // Hay conexión a Internet, realiza la llamada a la API
       _firstDishRepository.getFirstList().then((value) {
         getFirstDishesState.add(ResourceState.success(value));
       }).catchError((e) {
@@ -42,11 +40,9 @@ class FirstDishViewModel extends BaseViewModel {
   Future<void> fetchFirstDish(int id) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet
       getFirstDishDetailState
           .add(ResourceState.error(Exception('No internet Connect')));
     } else {
-      // Hay conexión a Internet, realiza la llamada a la API
       _firstDishRepository.getFirstDishById(id).then((value) {
         getFirstDishDetailState.add(ResourceState.success(value));
       }).catchError((e) {

@@ -22,11 +22,9 @@ class DessertDishViewModel extends BaseViewModel {
   Future<void> fetchtDessertDishes() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet
       getDessertDishState
           .add(ResourceState.error(Exception('No Internet Connect')));
     } else {
-      // Hay conexión a Internet, realiza la llamada a la API
       _dessertDishrepository.getDessertsList().then((value) {
         getDessertDishState.add(ResourceState.success(value));
       }).catchError((e) {
@@ -39,11 +37,9 @@ class DessertDishViewModel extends BaseViewModel {
   Future<void> fetchDessertDish(int id) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      // No hay conexión a Internet
       getDessertDishDetailState
           .add(ResourceState.error(Exception('No internet Connect')));
     } else {
-      // Hay conexión a Internet, realiza la llamada a la API
       _dessertDishrepository.getDessertDishById(id).then((value) {
         getDessertDishDetailState.add(ResourceState.success(value));
       }).catchError((e) {
