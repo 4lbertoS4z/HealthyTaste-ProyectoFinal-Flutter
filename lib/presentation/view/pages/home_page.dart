@@ -5,6 +5,7 @@ import 'package:healthy_taste/generated/l10n.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.navigationShell});
   final StatefulNavigationShell navigationShell;
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
