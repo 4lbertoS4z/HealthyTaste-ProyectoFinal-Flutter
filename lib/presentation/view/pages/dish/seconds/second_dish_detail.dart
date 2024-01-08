@@ -82,7 +82,7 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
               fit: BoxFit.cover,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 S.of(context).ingredients,
                 style:
@@ -90,7 +90,7 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 _dishDetails!.details.ingredients.join('\n'),
                 style: const TextStyle(fontSize: 18),
@@ -98,7 +98,7 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 S.of(context).elaboration,
                 style:
@@ -106,7 +106,7 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 _dishDetails!.details.elaboration,
                 style: const TextStyle(fontSize: 18),
@@ -115,7 +115,7 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
             ),
             if (_dishDetails!.details.imgAllergies.isNotEmpty)
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -132,13 +132,17 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
                   ],
                 ),
               ),
-            Text(
-              S.of(context).nutrients,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                S.of(context).nutrients,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
             if (_dishDetails != null)
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: SizedBox(
                   height: 200,
                   width: double.infinity,
@@ -150,13 +154,17 @@ class _SecondDishDetailState extends State<SecondDishDetail> {
                   ),
                 ),
               ),
-            Text(
-              S.of(context).videoDetail,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                S.of(context).videoDetail,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
             if (_dishDetails!.details.urlVideo.isNotEmpty)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.all(16.0),
                 child:
                     VideoPlayerScreen(videoId: _dishDetails!.details.urlVideo),
               ),
